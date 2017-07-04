@@ -1,6 +1,7 @@
 // LetterCode.cpp : main project file. Erin K Kennon
 
 #include "stdafx.h"
+#include "LetterCodeLogic.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -17,7 +18,7 @@ int main()
 	cout << "Welcome to the letter code program!";
 
 	do {
-		cout << "Encode, Decode or Quit(E / D / Q)";
+		cout << "Encode, Decode or Quit(E / D / Q): ";
 		cin >> choice;
 
 		if (!cin.good()) {
@@ -44,7 +45,7 @@ int main()
 		}
 	} while (choice != 'Q');
 
-	cout << "Thank you for using the letter code program";
+	cout << "Thank you for using the letter code program." << endl;
 	system("Pause");
 
 	return 0;
@@ -53,24 +54,27 @@ int main()
 void getEncodeString() {
 	string message;
 
-	cout << "Please enter your message to be encoded, use space to separate words";
+	cout << "Please enter your message to be encoded, use space to separate words: ";
 
-	cin >> message;
-	if (!cin.good()) {
+	cin.ignore(1000, '\n');
+	getline(cin, message);
+
+	while (!cin.good()) {
 		cin.clear();
 		cin.ignore(1000, '\n');
+		cout << "Please enter your message to be encoded, use space to separate words: ";
 	}
 
 	cout << "\nYour encoded message is: " << endl;
-	//TODO encode process here, call to LetterCodeLogic
-	cout << "function not yet available";
+	
+	cout << LetterCodeLogic::Encode(message) << endl << endl;
 }
 
 void getDecodeString() {
 	vector<int> letters;
 	unsigned int x;
 
-	cout << "Please enter your numbers to be decoded, use space to separate words, 99 to terminate input";
+	cout << "Please enter your numbers to be decoded, use space to separate words, 99 to terminate input: ";
 
 	do {
 		cin >> x;
@@ -87,7 +91,7 @@ void getDecodeString() {
 
 	if (letters.size() > 1) {
 		cout << "\nYour decoded message is: " << endl;
-		//TODO decode process here, call to LetterCodeLogic
-		cout << "function not yet available";
+		
+		cout << LetterCodeLogic::Decode(letters) << endl << endl;
 	}
 }

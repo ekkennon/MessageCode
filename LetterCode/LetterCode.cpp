@@ -11,6 +11,7 @@ using namespace System;
 
 void getEncodeString();
 void getDecodeString();
+void getDecodeStringS();
 
 int main()
 {
@@ -34,7 +35,8 @@ int main()
 			break;
 		case 'd':
 		case 'D':
-			getDecodeString();
+			//getDecodeString();
+			getDecodeStringS();
 			break;
 		case 'q':
 		case 'Q':
@@ -58,12 +60,6 @@ void getEncodeString() {
 
 	cin.ignore(1000, '\n');
 	getline(cin, message);
-
-	while (!cin.good()) {
-		cin.clear();
-		cin.ignore(1000, '\n');
-		cout << "Please enter your message to be encoded, use space to separate words: ";
-	}
 
 	cout << "\nYour encoded message is: " << endl;
 	
@@ -89,9 +85,21 @@ void getDecodeString() {
 		}
 	} while (x != 99);
 
-	if (letters.size() > 1) {
+	if (letters.size() > 0) {
 		cout << "\nYour decoded message is: " << endl;
 		
 		cout << LetterCodeLogic::Decode(letters) << endl << endl;
 	}
+}
+
+void getDecodeStringS() {
+	string message;
+
+	cout << "Please enter your numbers to be decoded, use space to separate words: ";
+
+	cin.ignore(1000, '\n');
+	getline(cin, message);
+
+	cout << "\nYour decoded message is: " << endl;
+	cout << LetterCodeLogic::DecodeS(message) << endl << endl;
 }

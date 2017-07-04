@@ -9,7 +9,6 @@ using namespace System;
 
 string LetterCodeLogic::Encode(string message)
 {
-	char c;
 	unsigned int x;
 	stringstream result;
 	
@@ -19,7 +18,6 @@ string LetterCodeLogic::Encode(string message)
 		}
 		else {
 			x = message[i];
-			//x = c;
 			if (x < 65) {
 				x = 99;
 			}
@@ -55,5 +53,29 @@ string LetterCodeLogic::Decode(vector<int> letters)
 
 		result << c;
 	}
+	return result.str();
+}
+
+string LetterCodeLogic::DecodeS(string letters) {
+	stringstream result;
+	istringstream iss(letters);
+	char c;
+	unsigned int n;
+
+	do
+	{
+		iss >> n;
+		if (n == 0) {
+			c = ' ';
+		}
+		else if (n < 0 || n > 26) {
+			c = '?';
+		}
+		else {
+			c = n + 64;
+		}
+		result << c;
+	} while (n != 99);
+
 	return result.str();
 }
